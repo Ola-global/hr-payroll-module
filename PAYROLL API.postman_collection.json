@@ -1,0 +1,354 @@
+{
+  "info": {
+    "_postman_id": "e5460d48-3f2a-40b8-b3ff-67a39e7c2e43",
+    "name": "PAYROLL API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "56708708",
+    "_collection_link": "https://go.postman.co/collection/56708708-e5460d48-3f2a-40b8-b3ff-67a39e7c2e43?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register Admin",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\": \"admin@example.com\",\r\n  \"password\": \"your-password\",\r\n  \"role\": \"Admin\",\r\n  \"companyId\": \"your-company-id\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base}}/api/auth/register",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "\t{ \"email\": \"admin@example.com\", \"password\": \"your-password\" }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base}}/api/auth/login",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Admin",
+      "item": [
+        {
+          "name": "Calculate payroll",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{ \"payPeriod\": \"2026-12\" }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base}}/api/payroll/calculate",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "payroll",
+                "calculate"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get payroll",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base}}/api/payroll/{{payrollId}}",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "payroll",
+                "{{payrollId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Correct deductions",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{ \"deductions\": [{ \"name\": \"Tax\", \"amount\": 50000 }] }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base}}/api/payroll/{{payrollId}}/entries/{{employeeId}}",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "payroll",
+                "{{payrollId}}",
+                "entries",
+                "{{employeeId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Finalize payroll",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{ \"confirm\": true }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base}}/api/payroll/{{payrollId}}/finalize",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "payroll",
+                "{{payrollId}}",
+                "finalize"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update payment",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{ \"status\": \"scheduled\", \"paymentDate\": \"2027-01-30\" }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base}}/api/payroll/{{payrollId}}/payment",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "payroll",
+                "{{payrollId}}",
+                "payment"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Payroll history",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base}}/api/payroll",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "payroll"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "All payslips",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base}}/api/payroll/{{payrollId}}/payslips",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "payroll",
+                "{{payrollId}}",
+                "payslips"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "One payslip",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base}}/api/payroll/{{payrollId}}/payslips/{{employeeId}}",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "payroll",
+                "{{payrollId}}",
+                "payslips",
+                "{{employeeId}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Employee",
+      "item": [
+        {
+          "name": "My payslips",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base}}/api/payroll/me/payslips",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "payroll",
+                "me",
+                "payslips"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "My payslip",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base}}/api/payroll/me/payslips/{{payrollId}}",
+              "host": [
+                "{{base}}"
+              ],
+              "path": [
+                "api",
+                "payroll",
+                "me",
+                "payslips",
+                "{{payrollId}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "base",
+      "value": ""
+    },
+    {
+      "key": "token",
+      "value": ""
+    },
+    {
+      "key": "payrollId",
+      "value": ""
+    },
+    {
+      "key": "employeeId",
+      "value": ""
+    }
+  ]
+}
